@@ -1,0 +1,563 @@
+# This file is generated - DO NOT EDIT!
+# To override config, edit docker-compose.override.yml
+version: "2.4"
+services:
+    dataexchange_0:
+        container_name: blockdod_dataexchange_0
+        image: ghcr.io/hyperledger/firefly-dataexchange-https@sha256:1e01b0d5fc3cfd95de150d47c09ba419b8ec98345d105a6d67d7bc7101aeea89
+        volumes:
+            - dataexchange_0:/data
+        ports:
+            - 10205:3000
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    dataexchange_1:
+        container_name: blockdod_dataexchange_1
+        image: ghcr.io/hyperledger/firefly-dataexchange-https@sha256:1e01b0d5fc3cfd95de150d47c09ba419b8ec98345d105a6d67d7bc7101aeea89
+        volumes:
+            - dataexchange_1:/data
+        ports:
+            - 10405:3000
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    dataexchange_2:
+        container_name: blockdod_dataexchange_2
+        image: ghcr.io/hyperledger/firefly-dataexchange-https@sha256:1e01b0d5fc3cfd95de150d47c09ba419b8ec98345d105a6d67d7bc7101aeea89
+        volumes:
+            - dataexchange_2:/data
+        ports:
+            - 10605:3000
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    dataexchange_3:
+        container_name: blockdod_dataexchange_3
+        image: ghcr.io/hyperledger/firefly-dataexchange-https@sha256:1e01b0d5fc3cfd95de150d47c09ba419b8ec98345d105a6d67d7bc7101aeea89
+        volumes:
+            - dataexchange_3:/data
+        ports:
+            - 10805:3000
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    evmconnect_0:
+        container_name: blockdod_evmconnect_0
+        image: ghcr.io/hyperledger/firefly-evmconnect@sha256:7fbd5b236262b8f13ed43e1c691aad0ee31437f2db20e675d75864b568afe9ed
+        command: -f /evmconnect/config.yaml
+        volumes:
+            - /home/william/.firefly/stacks/blockdod/runtime/config/evmconnect_0.yaml:/evmconnect/config.yaml
+            - evmconnect_data_0:/evmconnect/data
+        ports:
+            - 5102:5008
+        depends_on:
+            geth:
+                condition: service_started
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    evmconnect_1:
+        container_name: blockdod_evmconnect_1
+        image: ghcr.io/hyperledger/firefly-evmconnect@sha256:7fbd5b236262b8f13ed43e1c691aad0ee31437f2db20e675d75864b568afe9ed
+        command: -f /evmconnect/config.yaml
+        volumes:
+            - /home/william/.firefly/stacks/blockdod/runtime/config/evmconnect_1.yaml:/evmconnect/config.yaml
+            - evmconnect_data_1:/evmconnect/data
+        ports:
+            - 5202:5008
+        depends_on:
+            geth:
+                condition: service_started
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    evmconnect_2:
+        container_name: blockdod_evmconnect_2
+        image: ghcr.io/hyperledger/firefly-evmconnect@sha256:7fbd5b236262b8f13ed43e1c691aad0ee31437f2db20e675d75864b568afe9ed
+        command: -f /evmconnect/config.yaml
+        volumes:
+            - /home/william/.firefly/stacks/blockdod/runtime/config/evmconnect_2.yaml:/evmconnect/config.yaml
+            - evmconnect_data_2:/evmconnect/data
+        ports:
+            - 5302:5008
+        depends_on:
+            geth:
+                condition: service_started
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    evmconnect_3:
+        container_name: blockdod_evmconnect_3
+        image: ghcr.io/hyperledger/firefly-evmconnect@sha256:7fbd5b236262b8f13ed43e1c691aad0ee31437f2db20e675d75864b568afe9ed
+        command: -f /evmconnect/config.yaml
+        volumes:
+            - /home/william/.firefly/stacks/blockdod/runtime/config/evmconnect_3.yaml:/evmconnect/config.yaml
+            - evmconnect_data_3:/evmconnect/data
+        ports:
+            - 5402:5008
+        depends_on:
+            geth:
+                condition: service_started
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    firefly_core_0:
+        container_name: blockdod_firefly_core_0
+        image: ghcr.io/hyperledger/firefly@sha256:11d792a42e3c91ecfd2286402f28fc14cdff14859d45db2c331dd9dee18b56ff
+        volumes:
+            - /home/william/.firefly/stacks/blockdod/runtime/config/firefly_core_0.yml:/etc/firefly/firefly.core.yml:ro
+            - firefly_core_data_0:/etc/firefly/data
+        ports:
+            - 5000:5000
+            - 5101:5101
+        depends_on:
+            dataexchange_0:
+                condition: service_started
+            evmconnect_0:
+                condition: service_started
+            evmconnect_1:
+                condition: service_started
+            evmconnect_2:
+                condition: service_started
+            evmconnect_3:
+                condition: service_started
+            geth:
+                condition: service_started
+            ipfs_0:
+                condition: service_healthy
+            tokens_0_0:
+                condition: service_healthy
+            tokens_1_0:
+                condition: service_healthy
+            tokens_2_0:
+                condition: service_healthy
+            tokens_3_0:
+                condition: service_healthy
+        healthcheck:
+            test:
+                - CMD
+                - curl
+                - --fail
+                - http://localhost:5000/api/v1/status
+            interval: 15s
+            retries: 30
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    firefly_core_1:
+        container_name: blockdod_firefly_core_1
+        image: ghcr.io/hyperledger/firefly@sha256:11d792a42e3c91ecfd2286402f28fc14cdff14859d45db2c331dd9dee18b56ff
+        volumes:
+            - /home/william/.firefly/stacks/blockdod/runtime/config/firefly_core_1.yml:/etc/firefly/firefly.core.yml:ro
+            - firefly_core_data_1:/etc/firefly/data
+        ports:
+            - 5001:5001
+            - 5201:5201
+        depends_on:
+            dataexchange_1:
+                condition: service_started
+            evmconnect_0:
+                condition: service_started
+            evmconnect_1:
+                condition: service_started
+            evmconnect_2:
+                condition: service_started
+            evmconnect_3:
+                condition: service_started
+            geth:
+                condition: service_started
+            ipfs_1:
+                condition: service_healthy
+            tokens_0_0:
+                condition: service_healthy
+            tokens_1_0:
+                condition: service_healthy
+            tokens_2_0:
+                condition: service_healthy
+            tokens_3_0:
+                condition: service_healthy
+        healthcheck:
+            test:
+                - CMD
+                - curl
+                - --fail
+                - http://localhost:5001/api/v1/status
+            interval: 15s
+            retries: 30
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    firefly_core_2:
+        container_name: blockdod_firefly_core_2
+        image: ghcr.io/hyperledger/firefly@sha256:11d792a42e3c91ecfd2286402f28fc14cdff14859d45db2c331dd9dee18b56ff
+        volumes:
+            - /home/william/.firefly/stacks/blockdod/runtime/config/firefly_core_2.yml:/etc/firefly/firefly.core.yml:ro
+            - firefly_core_data_2:/etc/firefly/data
+        ports:
+            - 5002:5002
+            - 5301:5301
+        depends_on:
+            dataexchange_2:
+                condition: service_started
+            evmconnect_0:
+                condition: service_started
+            evmconnect_1:
+                condition: service_started
+            evmconnect_2:
+                condition: service_started
+            evmconnect_3:
+                condition: service_started
+            geth:
+                condition: service_started
+            ipfs_2:
+                condition: service_healthy
+            tokens_0_0:
+                condition: service_healthy
+            tokens_1_0:
+                condition: service_healthy
+            tokens_2_0:
+                condition: service_healthy
+            tokens_3_0:
+                condition: service_healthy
+        healthcheck:
+            test:
+                - CMD
+                - curl
+                - --fail
+                - http://localhost:5002/api/v1/status
+            interval: 15s
+            retries: 30
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    firefly_core_3:
+        container_name: blockdod_firefly_core_3
+        image: ghcr.io/hyperledger/firefly@sha256:11d792a42e3c91ecfd2286402f28fc14cdff14859d45db2c331dd9dee18b56ff
+        volumes:
+            - /home/william/.firefly/stacks/blockdod/runtime/config/firefly_core_3.yml:/etc/firefly/firefly.core.yml:ro
+            - firefly_core_data_3:/etc/firefly/data
+        ports:
+            - 5003:5003
+            - 5401:5401
+        depends_on:
+            dataexchange_3:
+                condition: service_started
+            evmconnect_0:
+                condition: service_started
+            evmconnect_1:
+                condition: service_started
+            evmconnect_2:
+                condition: service_started
+            evmconnect_3:
+                condition: service_started
+            geth:
+                condition: service_started
+            ipfs_3:
+                condition: service_healthy
+            tokens_0_0:
+                condition: service_healthy
+            tokens_1_0:
+                condition: service_healthy
+            tokens_2_0:
+                condition: service_healthy
+            tokens_3_0:
+                condition: service_healthy
+        healthcheck:
+            test:
+                - CMD
+                - curl
+                - --fail
+                - http://localhost:5003/api/v1/status
+            interval: 15s
+            retries: 30
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    geth:
+        container_name: blockdod_geth
+        image: ethereum/client-go:release-1.10
+        command: --datadir /data --syncmode 'full' --port 30311 --http --http.addr "0.0.0.0" --http.corsdomain="*"  -http.port 8545 --http.vhosts "*" --http.api 'admin,personal,eth,net,web3,txpool,miner,clique,debug' --networkid 2021 --miner.gasprice 0 --password /data/password --mine --allow-insecure-unlock --nodiscover --verbosity 4 --miner.gaslimit 16777215
+        volumes:
+            - geth:/data
+        ports:
+            - 5100:8545
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    ipfs_0:
+        container_name: blockdod_ipfs_0
+        image: ipfs/go-ipfs:v0.10.0
+        environment:
+            IPFS_SWARM_KEY: |-
+                /key/swarm/psk/1.0.0/
+                /base16/
+                2cfe599fb64934c9a7742622b27415e55524d69a9e87b5d95d1a6fc77d67a3df
+            LIBP2P_FORCE_PNET: "1"
+        volumes:
+            - ipfs_staging_0:/export
+            - ipfs_data_0:/data/ipfs
+        ports:
+            - 10206:5001
+            - 10207:8080
+        healthcheck:
+            test:
+                - CMD-SHELL
+                - wget --post-data= http://127.0.0.1:5001/api/v0/id -O - -q
+            interval: 5s
+            timeout: 3s
+            retries: 12
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    ipfs_1:
+        container_name: blockdod_ipfs_1
+        image: ipfs/go-ipfs:v0.10.0
+        environment:
+            IPFS_SWARM_KEY: |-
+                /key/swarm/psk/1.0.0/
+                /base16/
+                2cfe599fb64934c9a7742622b27415e55524d69a9e87b5d95d1a6fc77d67a3df
+            LIBP2P_FORCE_PNET: "1"
+        volumes:
+            - ipfs_staging_1:/export
+            - ipfs_data_1:/data/ipfs
+        ports:
+            - 10406:5001
+            - 10407:8080
+        healthcheck:
+            test:
+                - CMD-SHELL
+                - wget --post-data= http://127.0.0.1:5001/api/v0/id -O - -q
+            interval: 5s
+            timeout: 3s
+            retries: 12
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    ipfs_2:
+        container_name: blockdod_ipfs_2
+        image: ipfs/go-ipfs:v0.10.0
+        environment:
+            IPFS_SWARM_KEY: |-
+                /key/swarm/psk/1.0.0/
+                /base16/
+                2cfe599fb64934c9a7742622b27415e55524d69a9e87b5d95d1a6fc77d67a3df
+            LIBP2P_FORCE_PNET: "1"
+        volumes:
+            - ipfs_staging_2:/export
+            - ipfs_data_2:/data/ipfs
+        ports:
+            - 10606:5001
+            - 10607:8080
+        healthcheck:
+            test:
+                - CMD-SHELL
+                - wget --post-data= http://127.0.0.1:5001/api/v0/id -O - -q
+            interval: 5s
+            timeout: 3s
+            retries: 12
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    ipfs_3:
+        container_name: blockdod_ipfs_3
+        image: ipfs/go-ipfs:v0.10.0
+        environment:
+            IPFS_SWARM_KEY: |-
+                /key/swarm/psk/1.0.0/
+                /base16/
+                2cfe599fb64934c9a7742622b27415e55524d69a9e87b5d95d1a6fc77d67a3df
+            LIBP2P_FORCE_PNET: "1"
+        volumes:
+            - ipfs_staging_3:/export
+            - ipfs_data_3:/data/ipfs
+        ports:
+            - 10806:5001
+            - 10807:8080
+        healthcheck:
+            test:
+                - CMD-SHELL
+                - wget --post-data= http://127.0.0.1:5001/api/v0/id -O - -q
+            interval: 5s
+            timeout: 3s
+            retries: 12
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    sandbox_0:
+        container_name: blockdod_sandbox_0
+        image: ghcr.io/hyperledger/firefly-sandbox:latest
+        environment:
+            FF_ENDPOINT: http://firefly_core_0:5000
+        ports:
+            - 5109:3001
+    sandbox_1:
+        container_name: blockdod_sandbox_1
+        image: ghcr.io/hyperledger/firefly-sandbox:latest
+        environment:
+            FF_ENDPOINT: http://firefly_core_1:5001
+        ports:
+            - 5209:3001
+    sandbox_2:
+        container_name: blockdod_sandbox_2
+        image: ghcr.io/hyperledger/firefly-sandbox:latest
+        environment:
+            FF_ENDPOINT: http://firefly_core_2:5002
+        ports:
+            - 5309:3001
+    sandbox_3:
+        container_name: blockdod_sandbox_3
+        image: ghcr.io/hyperledger/firefly-sandbox:latest
+        environment:
+            FF_ENDPOINT: http://firefly_core_3:5003
+        ports:
+            - 5409:3001
+    tokens_0_0:
+        container_name: blockdod_tokens_0_0
+        image: ghcr.io/hyperledger/firefly-tokens-erc20-erc721@sha256:c75699b05cb41c8950dcb1b1eed49f7beee910433ff78830df6db61dfc325812
+        environment:
+            AUTO_INIT: "false"
+            ETHCONNECT_TOPIC: tokens_0_0
+            ETHCONNECT_URL: http://evmconnect_0:5008
+            FACTORY_CONTRACT_ADDRESS: "0xbd1dd3e7ba2a4bbc0477853d6734917275d12295"
+        ports:
+            - 5108:3000
+        depends_on:
+            evmconnect_0:
+                condition: service_started
+        healthcheck:
+            test:
+                - CMD
+                - curl
+                - http://localhost:3000/api
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    tokens_1_0:
+        container_name: blockdod_tokens_1_0
+        image: ghcr.io/hyperledger/firefly-tokens-erc20-erc721@sha256:c75699b05cb41c8950dcb1b1eed49f7beee910433ff78830df6db61dfc325812
+        environment:
+            AUTO_INIT: "false"
+            ETHCONNECT_TOPIC: tokens_1_0
+            ETHCONNECT_URL: http://evmconnect_1:5008
+            FACTORY_CONTRACT_ADDRESS: "0xbd1dd3e7ba2a4bbc0477853d6734917275d12295"
+        ports:
+            - 5208:3000
+        depends_on:
+            evmconnect_1:
+                condition: service_started
+        healthcheck:
+            test:
+                - CMD
+                - curl
+                - http://localhost:3000/api
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    tokens_2_0:
+        container_name: blockdod_tokens_2_0
+        image: ghcr.io/hyperledger/firefly-tokens-erc20-erc721@sha256:c75699b05cb41c8950dcb1b1eed49f7beee910433ff78830df6db61dfc325812
+        environment:
+            AUTO_INIT: "false"
+            ETHCONNECT_TOPIC: tokens_2_0
+            ETHCONNECT_URL: http://evmconnect_2:5008
+            FACTORY_CONTRACT_ADDRESS: "0xbd1dd3e7ba2a4bbc0477853d6734917275d12295"
+        ports:
+            - 5308:3000
+        depends_on:
+            evmconnect_2:
+                condition: service_started
+        healthcheck:
+            test:
+                - CMD
+                - curl
+                - http://localhost:3000/api
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+    tokens_3_0:
+        container_name: blockdod_tokens_3_0
+        image: ghcr.io/hyperledger/firefly-tokens-erc20-erc721@sha256:c75699b05cb41c8950dcb1b1eed49f7beee910433ff78830df6db61dfc325812
+        environment:
+            AUTO_INIT: "false"
+            ETHCONNECT_TOPIC: tokens_3_0
+            ETHCONNECT_URL: http://evmconnect_3:5008
+            FACTORY_CONTRACT_ADDRESS: "0xbd1dd3e7ba2a4bbc0477853d6734917275d12295"
+        ports:
+            - 5408:3000
+        depends_on:
+            evmconnect_3:
+                condition: service_started
+        healthcheck:
+            test:
+                - CMD
+                - curl
+                - http://localhost:3000/api
+        logging:
+            driver: json-file
+            options:
+                max-file: "1"
+                max-size: 10m
+volumes:
+    dataexchange_0: {}
+    dataexchange_1: {}
+    dataexchange_2: {}
+    dataexchange_3: {}
+    evmconnect_data_0: {}
+    evmconnect_data_1: {}
+    evmconnect_data_2: {}
+    evmconnect_data_3: {}
+    firefly_core_data_0: {}
+    firefly_core_data_1: {}
+    firefly_core_data_2: {}
+    firefly_core_data_3: {}
+    geth: {}
+    ipfs_data_0: {}
+    ipfs_data_1: {}
+    ipfs_data_2: {}
+    ipfs_data_3: {}
+    ipfs_staging_0: {}
+    ipfs_staging_1: {}
+    ipfs_staging_2: {}
+    ipfs_staging_3: {}
