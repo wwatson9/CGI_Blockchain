@@ -1,0 +1,21 @@
+{
+    "equipment": [
+      {
+        "equipment_name": "3D Printer",
+        "equipment_id": "EQP001",
+        "location": "Lab A, Room 101",
+        "last_checked_out_at": "2024-11-24T10:30:00",
+        "checked_out_by": "John Doe",
+        "last_maintenance": "2024-11-15T14:00:00"
+      },
+      {
+        "equipment_name": "Microscope",
+        "equipment_id": "EQP002",
+        "location": "Lab B, Room 202",
+        "last_checked_out_at": "2024-11-23T16:45:00",
+        "checked_out_by": "Jane Smith",
+        "last_maintenance": "2024-11-10T09:00:00"
+      }
+    ]
+  }
+  
