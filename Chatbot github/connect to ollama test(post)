@@ -1,0 +1,7 @@
+curl -X POST "http://localhost:8000/generate_formatted" -H "Content-Type: application/json" -d '{
+  "model": "llama3.2",
+  "prompt": "Write a haiku",
+  "stream": false
+}'
+
+//To test app(connects to Ollama) API
